@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game of Thrones Houses</title>
+
+	<style>
+
+		.wrapper{
+			background-color: black;
+			width: 980px;
+			height: 1000px
+		}
+
+		img{
+			width: 200px;
+			display: inline-block;
+			margin-right: 20px;
+			margin-left: 20px;
+			margin-top: 5px;
+		}
+
+		.housedetails{
+			width: 700px;
+			height: 300px;
+			border: 2px solid white;
+			margin-left: 130px;
+			margin-top: 50px;
+			color: white;
+			text-align: center;
+		}
+
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+    		$("img").click(function(){
+    			var house = $(this).attr("class"); // takes the data under the photo's class (which is the house number url)
+        		$.get("https://www.anapioficeandfire.com/api/houses/" + house, function(res) { // API url using the house number
+        		$(".housedetails").html("<h1>" + res["name"] + "</h1>") // .html starts from scratch within the div after every click, rather than adding onto the previous output
+            	$(".housedetails").append("<h2>" + res["region"] + "</h2>") // can't do .html or else it will erase lines before. would only show the last output, in this case [words]
+            	$(".housedetails").append("<h3>" + res["titles"] + "</h2>")
+            	$(".housedetails").append("<h3>" + res["words"] + "</h2>")
+	        	}, 'json');
+    		});
+
+		});
+
+	</script>
+
+</head>
+<body>
+	<div class="wrapper">
+		<img class="362" src="stark.jpg"> <!-- added a number class to be called upon by jquery above to show appropriate house details-->
+		<img class="16" src="baratheon.jpg">
+		<img class="378" src="targaryen.jpg">
+		<img class="229" src="lannister.jpg">
+
+		<div class="housedetails">
+			
+		</div>
+	</div>
+
+</body>
+</html>
