@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pokemon</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+			for(var i = 1; i < 151; i++){ // this bypasses the need for button by loading directly when document is ready
+				$("body").append("<img src='http://pokeapi.co/media/img/" + i +".png'>")
+			}
+
+			// $("button").click(function(){ // used a button to load the photos. Nested the for loop inside the click function
+			// 	for(var i = 1; i < 151; i++){
+			// 	$("body").append("<img src='http://pokeapi.co/media/img/" + i +".png'>")
+			// }
+			// })
+		
+		});
+
+	</script>
+</head>
+
+<body>
+
+</body>
+</html>
