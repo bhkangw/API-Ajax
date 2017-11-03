@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pokedex</title>
+
+	<style>
+
+		.pokemon{
+			width: 1000px;
+			display: inline-block;
+		}
+
+		.pokedex{
+			width: 300px;
+			height: 400px;
+			display: inline-block;
+			border: 20px solid red;
+			vertical-align: top;
+			margin-top: 30px;
+		}
+
+		h2{
+			text-align: center;
+		}
+
+	</style>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+
+
+			// $('form').submit(function(){ // trying to remove spaces but not necessary.
+   //  			var str = $("input").val()
+   //  			console.log(str)
+   //  			function nospaces(str){
+	  //   		return /\S/.test(str);
+			// 	};
+			// 	var newstr = nospaces();
+   //      		$.get("http://api.openweathermap.org/data/2.5/weather?q=" + newstr + "&&appid=eb8ceab7a53ef885d3d1661fc6bcee7e", function(res) {
+   //      		$("body").append("<h1>" + res["name"] + "</h1>")
+   //          	$("body").append(res["main"]["temp"])
+	  //       	}, 'json');
+	  //       	return false;
+   //  		});
+
+    		$('form').submit(function(){
+        		$.get("http://api.openweathermap.org/data/2.5/weather?q=" + $("input").val() + "&units=imperial&&appid=eb8ceab7a53ef885d3d1661fc6bcee7e", function(res) {
+        		$("body").append("<h1>" + res["name"] + "</h1>")
+            	$("body").append("Temperature (F): " + Math.round(res["main"]["temp"]))
+	        	}, 'json');
+	        	return false;
+    		});
+
+    		// s = [...s].filter(p => p !== " ").toString(); // another way to remove spaces. changing s to an array, removing the spaces and changing back into string
+		});
+
+	</script>
+
+</head>
+<body>
+
+	<form>
+		City: <input type="text" id="city"><br><br>
+		<input type="submit" value="Get Weather!">
+	</form>
+
+
+</body>
+</html>
